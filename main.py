@@ -1,8 +1,8 @@
 from flask import Flask
 from models import db, ma
 
-from developers import developers_bp
-from repos import repos_bp
+from blueprints.developers import developers_bp
+from blueprints.repos import repos_bp
 
 app = Flask(__name__)
 app.config.from_object('setting.db_config') #载入配置文件

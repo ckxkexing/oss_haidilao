@@ -12,7 +12,7 @@ def list():
         'address':'china'
         })
 
-
+@developers_bp.route('/core/')
 @developers_bp.route('/core/<int:page>')
 def list_deveplopers(page=1):
     per_page = 10
