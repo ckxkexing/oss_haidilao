@@ -1,0 +1,17 @@
+version: '3'
+services:
+  oss_haidilao:
+    build: .
+    depends_on:
+      - mysql
+    ports:
+     - "5000:5000"
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - ./mysql_db:/docker-entrypoint-initdb.d
+      # - ./mysql_db/data:/var/lib/mysql
+    ports:
+      - "32000:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root

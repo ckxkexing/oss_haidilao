@@ -16,3 +16,9 @@ py -3 -m venv .venv
 pip install flask
 flask --app main run
 ```
+
+
+使用docker
+```sh
+docker compose up -d --no-deps --build
+```
