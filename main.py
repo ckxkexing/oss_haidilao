@@ -1,11 +1,21 @@
 from flask import Flask
-from models import db, ma
+from database import db, ma
 
-from blueprints.developers import developers_bp
-from blueprints.repos import repos_bp
+from api.developers import developers_bp
+from api.repos import repos_bp
 
 app = Flask(__name__)
-app.config.from_object('setting.db_config') #载入配置文件
+
+from models import db_config as models_config
+from metrics import db_config as metrics_config
+
+SQLALCHEMY_BINDS = {
+    models_config.bind_name : models_config.SQLALCHEMY_DATABASE_URI,
+    metrics_config.bind_name : metrics_config.SQLALCHEMY_DATABASE_URI
+}
+app.config['SQLALCHEMY_BINDS'] = SQLALCHEMY_BINDS
+
+
 db.init_app(app)
 ma.init_app(app)
 
