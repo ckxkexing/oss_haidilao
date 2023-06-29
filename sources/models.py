@@ -1,4 +1,4 @@
-from database import db, ma
+from .database import db, ma
 
 class db_config(object):
     bind_name = "models"

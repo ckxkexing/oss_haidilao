@@ -2,7 +2,7 @@
 from flask import Blueprint
 from flask import jsonify
 
-from metrics import Test, Test_schema
+from sources.metrics import Test, Test_schema
 
 repos_bp = Blueprint('repos', __name__)
 

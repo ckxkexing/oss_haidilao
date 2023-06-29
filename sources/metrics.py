@@ -1,6 +1,6 @@
-from database import db, ma
+from .database import db, ma
 
-from metrics_config import db_config
+from .metrics_config import db_config
 
 ###
 #   metric table

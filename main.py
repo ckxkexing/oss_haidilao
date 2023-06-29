@@ -1,13 +1,14 @@
 from flask import Flask
-from database import db, ma
+
+from sources.database import db, ma
+from sources.models import db_config as models_config
+from sources.metrics import db_config as metrics_config
 
 from api.developers import developers_bp
 from api.repos import repos_bp
 
 app = Flask(__name__)
 
-from models import db_config as models_config
-from metrics import db_config as metrics_config
 
 SQLALCHEMY_BINDS = {
     models_config.bind_name : models_config.SQLALCHEMY_DATABASE_URI,
