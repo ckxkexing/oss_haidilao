@@ -2,6 +2,7 @@ from .database import db, ma
 
 class db_config(object):
     bind_name = "models"
+
     account = 'root'  # 账号
     password = 'root'  # 填入密码
     proname = 'core_developers'  # 填入数据库名
@@ -32,3 +33,19 @@ Developers_schema = DevelopersSchema(many=True)
 ###
 #   repos table
 ###
+
+# sloc
+class Sloc(db.Model):
+    __tablename__ = 'sloc'
+    __bind_key__ = db_config.bind_name
+    owner:str = db.Column(db.String(255))
+    repo:str = db.Column(db.String(255))
+    commit:str = db.Column(db.String(255), primary_key=True)
+    sloc:int = db.Column(db.Integer)
+
+class SlocSchema(ma.Schema):
+    class Meta:
+        fields = ("owner", "repo", "commit", "sloc")
+
+Sloc_schema = SlocSchema(many=True)
+
