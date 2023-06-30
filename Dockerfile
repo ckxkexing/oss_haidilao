@@ -8,4 +8,5 @@ RUN pip3 install flask-marshmallow
 COPY . .
 
 EXPOSE 5000
-CMD [ "flask", "--app" , "main", "run", "--host=0.0.0.0"]
+
+CMD [ "flask", "--app" , "main", "--debug", "run", "--host=0.0.0.0"]

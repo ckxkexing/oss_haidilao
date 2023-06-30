@@ -1,8 +1,8 @@
 from flask import Flask
 
-from sources.database import db, ma
-from sources.models import db_config as models_config
-from sources.metrics import db_config as metrics_config
+from datas.database import db, ma
+from datas.models import db_config as models_config
+from datas.metrics import db_config as metrics_config
 
 from api.developers import developers_bp
 from api.repos import repos_bp
