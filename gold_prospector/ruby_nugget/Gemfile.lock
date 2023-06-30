@@ -1,0 +1,41 @@
+PATH
+  remote: .
+  specs:
+    pullreqs (0.1)
+      charlock_holmes (>= 0.7.6)
+      github-linguist (>= 4.5)
+      mongo (>= 2.4.0)
+      mysql2 (>= 0.4)
+      parallel (>= 0.7.1)
+      rugged (>= 0.22)
+      sequel (>= 4.23)
+      trollop (>= 2.1.2)
+
+GEM
+  remote: https://mirrors.tuna.tsinghua.edu.cn/rubygems/
+  specs:
+    bson (4.15.0)
+    cgi (0.3.6)
+    charlock_holmes (0.7.7)
+    github-linguist (7.26.0)
+      cgi
+      charlock_holmes (~> 0.7.7)
+      mini_mime (~> 1.0)
+      rugged (~> 1.0)
+    mini_mime (1.1.2)
+    mongo (2.19.0)
+      bson (>= 4.14.1, < 5.0.0)
+    mysql2 (0.5.5)
+    parallel (1.23.0)
+    rugged (1.6.3)
+    sequel (5.69.0)
+    trollop (2.9.10)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  pullreqs!
+
+BUNDLED WITH
+   2.3.26
