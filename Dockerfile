@@ -4,7 +4,7 @@ WORKDIR /oss_haidilao
 
 RUN pip3 install flask Flask-SQLAlchemy pymysql
 RUN pip3 install cryptography
-RUN pip3 install flask-marshmallow
+RUN pip3 install marshmallow-sqlalchemy flask-marshmallow
 COPY . .
 
 EXPOSE 5000
