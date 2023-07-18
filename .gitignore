@@ -6,3 +6,7 @@ __pycache__/
 
 metrics_config.py
 mysql_data/
+.idea/
+.idea/misc.xml
+.idea/workspace.xml
+.idea/vcs.xml
