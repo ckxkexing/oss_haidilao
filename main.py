@@ -1,5 +1,6 @@
 from flask import Flask
 
+from api.centrality_score import centrality_score_bp
 from datas.database import db, ma
 from datas.models import db_config as models_config
 from datas.metrics import db_config as metrics_config
@@ -22,4 +23,5 @@ ma.init_app(app)
 
 app.register_blueprint(developers_bp, url_prefix='/developers')
 app.register_blueprint(repos_bp, url_prefix='/repos')
+app.register_blueprint(centrality_score_bp,url_prefix='/centrality_score')
 
