@@ -1,9 +1,9 @@
 from flask import Flask
 
 from api.centrality_score import centrality_score_bp
-from datas.database import db, ma
-from datas.models import db_config as models_config
-from datas.metrics import db_config as metrics_config
+from models.database import db, ma
+from models.config import local_db_config
+from models.config import metrics_db_config
 
 from api.developers import developers_bp
 from api.repos import repos_bp
@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 
 SQLALCHEMY_BINDS = {
-    models_config.bind_name : models_config.SQLALCHEMY_DATABASE_URI,
-    metrics_config.bind_name : metrics_config.SQLALCHEMY_DATABASE_URI
+    local_db_config.bind_name : local_db_config.SQLALCHEMY_DATABASE_URI,
+    metrics_db_config.bind_name : metrics_db_config.SQLALCHEMY_DATABASE_URI
 }
 app.config['SQLALCHEMY_BINDS'] = SQLALCHEMY_BINDS
 

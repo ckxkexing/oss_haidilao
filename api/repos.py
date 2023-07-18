@@ -2,8 +2,8 @@
 from flask import Blueprint
 from flask import jsonify
 
-from datas.metrics import Test, Test_schema
-from datas.models import Sloc, Sloc_schema
+from models.metrics import Test, Test_schema
+from models.local import Sloc, Sloc_schema
 
 repos_bp = Blueprint('repos', __name__)
 

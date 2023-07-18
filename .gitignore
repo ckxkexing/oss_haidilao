@@ -4,7 +4,7 @@ __pycache__/
 
 .venv
 
-metrics_config.py
+models/config.py
 mysql_data/
 .idea/
 .idea/misc.xml

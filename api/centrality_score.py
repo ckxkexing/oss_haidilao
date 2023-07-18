@@ -3,12 +3,12 @@ import json
 
 from flask import Blueprint
 
-from datas.models import ContributedReposRole, ContributedReposRoleSchema, contributed_repos_role_schema, \
+from models.metrics import ContributedReposRole, ContributedReposRoleSchema, contributed_repos_role_schema, \
     TotalFixIntensity, TotalFixIntensitySchema, total_fix_intensity_role_schema, ContributionGraph, \
     ContributionGraphSchema, contribution_graph_data_schema, PeersAverageFixIntensity, PeersAverageFixIntensitySchema, \
     peers_average_fix_intensity_role_schema, DeveloperRolesMetrics, DeveloperRolesMetricsSchema, \
     developer_roles_metrics_schema
-from helpers.clickhouse_cli import CKClient
+# from helpers.clickhouse_cli import CKClient
 
 centrality_score_bp = Blueprint('centrality_score', __name__)
 

@@ -1,59 +1,21 @@
 from .database import db, ma
-from .metrics_config import db_config
 
-
-# class db_config(object):
-#     bind_name = "models"
-#
-#     account = 'root'  # 账号
-#     password = 'root'  # 填入密码
-#     proname = 'core_developers'  # 填入数据库名
-#     ip = ''  # 填入服务器网址
-#     port = '3306'  # 端口
-#     SECRET_KEY = "hahahaha"  # session密钥hhhhhhhh
-#     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://{}:{}@{}:{}/{}?charset=utf8'.format(account, password, ip, port, proname)
-#     # print(SQLALCHEMY_DATABASE_URI)
-#     SQLALCHEMY_TRACK_MODIFICATIONS = True
-
+from .config import metrics_db_config as db_config
 
 ###
-#    developers table
+#   metric table
 ###
-class Developers(db.Model):
-    __tablename__ = 'developers'
+class Test(db.Model):
+    __tablename__ = 'test_tb'
     __bind_key__ = db_config.bind_name
-    login:str = db.Column(db.String(255), nullable=False, primary_key=True)
-    core:int = db.Column(db.Boolean)
+    id: int = db.Column(db.Integer, primary_key=True)
 
-class DevelopersSchema(ma.Schema):
+class TestSchema(ma.Schema):
     class Meta:
         # Fields to expose
-        fields = ("login", "core")
+        fields = ("id",)
 
-Developers_schema = DevelopersSchema(many=True)
-
-
-###
-#   repos table
-###
-
-# sloc
-class Sloc(db.Model):
-    __tablename__ = 'sloc'
-    __bind_key__ = db_config.bind_name
-    owner:str = db.Column(db.String(255))
-    repo:str = db.Column(db.String(255))
-    commit:str = db.Column(db.String(255), primary_key=True)
-    sloc:int = db.Column(db.Integer)
-
-
-class SlocSchema(ma.Schema):
-    class Meta:
-        fields = ("owner", "repo", "commit", "sloc")
-
-
-Sloc_schema = SlocSchema(many=True)
-
+Test_schema = TestSchema(many=True)
 
 class CentralityScore(db.Model):
     __tablename__ = 'centrality_score'
