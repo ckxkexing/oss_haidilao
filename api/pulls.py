@@ -49,18 +49,32 @@ def cnt_pull_requests(owner, repo):
 
 @pulls_bp.route('/detail/<owner>/<repo>/<number>')
 def pull_request_features_at_open(owner, repo, number):
-    res = {}
+    pr_id = GithubPullRequests.query.filter(
+                GithubPullRequests.search_key__owner==owner, 
+                GithubPullRequests.search_key__repo==repo,
+                GithubPullRequests.number==number
+        ).first().id
+
+    res = {"owner": owner, "repo": repo, "number": number, "id": pr_id}
+
     #
     # Project Dimension
 
-    ret = execute_raw_sql(text("""
-                select count(gpr.id) as open_pr_num from github_pull_requests as gpr
-                where gpr.search_key__owner=:owner and gpr.search_key__repo=:repo
-                    and gpr.closed_at = NULL
-            """), {"owner":owner, "repo":repo})
-    open_pr_num = ret.first()['open_pr_num']
+    ret = execute_raw_sql(text("""--sql
+        SELECT
+            count(distinct (CASE WHEN gpr.created_at < (SELECT created_at FROM github_pull_requests WHERE id = :id limit 1) THEN gpr.id ELSE 0 END)) AS opened_num,
+            count(distinct (CASE WHEN gpr.closed_at is not NULL and gpr.closed_at > 1970 and gpr.closed_at < (SELECT created_at FROM github_pull_requests WHERE id = :id limit 1) THEN gpr.id ELSE 0 END)) AS closed_num
+        FROM
+            github_pull_requests gpr
+        WHERE
+            gpr.search_key__owner = :owner AND
+            gpr.search_key__repo  = :repo  ;
+            """), {"owner":owner, "repo":repo, "id":pr_id})
+    if cur := ret.first():
+        open_pr_num = cur['opened_num'] - cur['closed_num']
+    else:
+        open_pr_num = -1
     res["open_pr_num"] = open_pr_num
-
 
     #
     # Pull Request Dimension
