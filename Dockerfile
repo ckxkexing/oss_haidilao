@@ -2,10 +2,9 @@ FROM python:3.8-slim-buster
 
 WORKDIR /oss_haidilao
 
-RUN pip3 install flask Flask-SQLAlchemy pymysql
-RUN pip3 install cryptography
-RUN pip3 install marshmallow-sqlalchemy flask-marshmallow clickhouse-sqlalchemy
 COPY . .
+
+RUN pip install -r requirements.txt
 
 EXPOSE 5000
 
