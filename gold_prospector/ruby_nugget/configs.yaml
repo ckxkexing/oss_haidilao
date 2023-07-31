@@ -1,4 +1,0 @@
-sql:
-  url: "mysql2://root:root@mysql:3306/core_developers?charset=utf8"
-
-repo_dir: "/repo_dir"

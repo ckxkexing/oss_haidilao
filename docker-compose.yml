@@ -23,11 +23,11 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
   
-  ruby_nugget:
-    build: ./gold_prospector/ruby_nugget/
-    command: sleep infinity
-    volumes:
-      - './gold_prospector/ruby_nugget:/ruby_nugget'
-      - D:\data1\repos:/repo_dir
-    depends_on:
-      - mysql
+  # ruby_nugget:
+  #   build: ./gold_prospector/ruby_nugget/
+  #   command: sleep infinity
+  #   volumes:
+  #     - './gold_prospector/ruby_nugget:/ruby_nugget'
+  #     - D:\data1\repos:/repo_dir
+  #   depends_on:
+  #     - mysql
