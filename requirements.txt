@@ -1,0 +1,6 @@
+flask~=2.3.2
+Flask-SQLAlchemy~=3.0.5
+pymysql~=1.1.0
+cryptography~=41.0.2
+marshmallow-sqlalchemy~=0.29.0
+flask-marshmallow~=0.15.0
