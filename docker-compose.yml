@@ -6,22 +6,22 @@ services:
       - './api:/oss_haidilao/api'
       - './datas:/oss_haidilao/datas'
       - './main.py:/oss_haidilao/main.py'
-    depends_on:
-      - mysql
+    # depends_on:
+    #   - mysql
     ports:
      - "5000:5000"
 
-  mysql:
-    image: mysql:8.0
-    command: mysqld --default-authentication-plugin=mysql_native_password
-    restart: always
-    volumes:
-      - ./mysql_db:/docker-entrypoint-initdb.d
-      - ./mysql_data/data:/var/lib/mysql
-    ports:
-      - "32000:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: root
+  # mysql:
+  #   image: mysql:8.0
+  #   command: mysqld --default-authentication-plugin=mysql_native_password
+  #   restart: always
+  #   volumes:
+  #     - ./mysql_db:/docker-entrypoint-initdb.d
+  #     - ./mysql_data/data:/var/lib/mysql
+  #   ports:
+  #     - "32000:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
   
   # ruby_nugget:
   #   build: ./gold_prospector/ruby_nugget/
