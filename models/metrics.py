@@ -118,3 +118,32 @@ class DeveloperRolesMetricsSchema(ma.Schema):
 
 
 developer_roles_metrics_schema = DeveloperRolesMetricsSchema(many=True)
+
+
+class NetworkMetrics(db.Model):
+    __tablename__ = 'network_metrics'
+    __bind_key__ = db_config.bind_name
+    id: int = db.Column(db.Integer, primary_key=True)
+    repo: str = db.Column(db.String(255))
+    month: str = db.Column(db.String(255))
+    num_nodes: int = db.Column(db.Integer)
+    num_edges: int = db.Column(db.Integer)
+    num_collaborations: int = db.Column(db.Integer)
+    in_degree_centrality: float = db.Column(db.Float)
+    out_degree_centrality: float = db.Column(db.Float)
+    triangles: float = db.Column(db.Float)
+    transitivity: float = db.Column(db.Float)
+    clustering: float = db.Column(db.Float)
+    reciprocity: float = db.Column(db.Float)
+    density: float = db.Column(db.Float)
+    components_number: int = db.Column(db.Integer)
+    avg_degree: float = db.Column(db.Float)
+
+
+class NetworkMetricsSchema(ma.Schema):
+    class Meta:
+        fields = ("id", "repo", "month", "num_nodes", "num_edges", "num_collaborations", "in_degree_centrality", "out_degree_centrality", "triangles", "transitivity",
+                  "clustering", "reciprocity", "density", "components_number", "avg_degree")
+
+
+Network_metrics_schema = NetworkMetricsSchema(many=True)
