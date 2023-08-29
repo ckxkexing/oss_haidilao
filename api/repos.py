@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask import jsonify
 
 from models.metrics import Test, Test_schema
-from models.local import Sloc, Sloc_schema
+from models.metrics_repo import Nloc, Nloc_schema
 
 repos_bp = Blueprint('repos', __name__)
 
@@ -21,9 +21,10 @@ def remote_test():
     return Test_schema.dump(test)
 
 
-@repos_bp.route('/sloc/')
-@repos_bp.route('/sloc/<int:page>')
+@repos_bp.route('/nloc/')
+@repos_bp.route('/nloc/<int:page>')
 def list_sloc(page=1):
     per_page = 10
-    info = Sloc.query.paginate(page=page, per_page=per_page, error_out=False)
-    return Sloc_schema.dump(info)
+    info = Nloc.query.paginate(page=page, per_page=per_page, error_out=False)
+    return Nloc_schema.dump(info)
+

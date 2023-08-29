@@ -1,7 +1,7 @@
 from flask import Blueprint
 from flask import jsonify
 
-from models.local import Developers, Developers_schema
+from models.metrics_repo import Developers, Developers_schema
 
 developers_bp = Blueprint('developers', __name__)
 
