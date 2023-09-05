@@ -8,6 +8,7 @@ from models.config import metrics_db_config
 from api.repos import repos_bp
 # from api.pulls import pulls_bp
 from api.network_metrics import network_metrics_bp
+from api.developer_metrics import developer_metrics_bp
 
 app = Flask(__name__)
 
@@ -26,4 +27,5 @@ app.register_blueprint(repos_bp, url_prefix='/repos')
 app.register_blueprint(centrality_score_bp,url_prefix='/centrality_score')
 # app.register_blueprint(pulls_bp, url_prefix='/pulls')
 app.register_blueprint(network_metrics_bp,url_prefix='/network_metrics')
+app.register_blueprint(developer_metrics_bp,url_prefix='/developer_metrics')
 
