@@ -5,7 +5,7 @@ from .config import metrics_db_config as db_config
 class PrivilegeEvents(db.Model):
     __tablename__ = 'privilege_events'
     __bind_key__ = db_config.bind_name
-    actor_login: str = db.Column(db.String(255))
+    actor_login: str = db.Column(db.String(255), primary_key=True)
     added_to_project: int = db.Column(db.Integer)
     converted_note_to_issue: int = db.Column(db.Integer)
     deployed: int = db.Column(db.Integer)
@@ -38,7 +38,7 @@ Privilege_events_schema = PrivilegeEventsSchema(many=True)
 class CountMetrics(db.Model):
     __tablename__ = 'count_metrics'
     __bind_key__ = db_config.bind_name
-    author_name: str = db.Column(db.String(255))
+    author_name: str = db.Column(db.String(255), primary_key=True)
     commit_num: int = db.Column(db.Integer)
     line_of_code: int = db.Column(db.Integer)
 
@@ -54,7 +54,7 @@ Count_metrics_schema = CountMetricsSchema(many=True)
 class DeveloperNetworkMetrics(db.Model):
     __tablename__ = 'developer_network_metrics'
     __bind_key__ = db_config.bind_name
-    author_name: str = db.Column(db.String(255))
+    author_name: str = db.Column(db.String(255), primary_key=True)
     degree_centrality: int = db.Column(db.Integer)
     eigenvector_centrality: float = db.Column(db.Float)
 
@@ -64,4 +64,4 @@ class DeveloperNetworkMetricsSchema(ma.Schema):
         fields = ("author_name", "degree_centrality", "eigenvector_centrality")
 
 
-Developer_network_metrics_schema = DeveloperNetworkMetrics(many=True)
+Developer_network_metrics_schema = DeveloperNetworkMetricsSchema(many=True)
