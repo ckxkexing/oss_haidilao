@@ -2,6 +2,12 @@ from .database import db, ma
 from .config import metrics_db_config as db_config
 from datetime import datetime
 
+### session for raw sql execute
+def execute_raw_sql(query, params):
+    res = db.session.execute(query, params,
+                          bind=db.get_engine(db_config.bind_name))
+    return res.mappings()
+
 ###
 #    developers table
 ###
