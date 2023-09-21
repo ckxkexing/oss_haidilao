@@ -32,9 +32,10 @@ def get_privilege_events():
                          })
     return map_list
 
+# TODO Fix
 @developer_metrics_bp.route('/count_metrics')
 def get_count_metrics():
-    score = CountMetrics.query().all()
+    score = CountMetrics.query.all()
     count_metrics = CountMetricsSchema.dump(Count_metrics_schema, score)
     map_list = []
     for data in count_metrics:
@@ -48,7 +49,7 @@ def get_count_metrics():
 
 @developer_metrics_bp.route('/developer_network_metrics')
 def get_developer_network_metrics():
-    score = DeveloperNetworkMetrics.query().all()
+    score = DeveloperNetworkMetrics.query.all()
     developer_network_metrics = DeveloperNetworkMetricsSchema.dump(Developer_network_metrics_schema, score)
     map_list = []
     for data in developer_network_metrics:

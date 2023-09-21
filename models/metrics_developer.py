@@ -52,7 +52,7 @@ Count_metrics_schema = CountMetricsSchema(many=True)
 
 
 class DeveloperNetworkMetrics(db.Model):
-    __tablename__ = 'developer_network_metrics'
+    __tablename__ = 'developer_role_network_metrics'
     __bind_key__ = db_config.bind_name
     author_name: str = db.Column(db.String(255), primary_key=True)
     degree_centrality: int = db.Column(db.Integer)
