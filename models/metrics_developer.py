@@ -36,7 +36,7 @@ Privilege_events_schema = PrivilegeEventsSchema(many=True)
 
 
 class CountMetrics(db.Model):
-    __tablename__ = 'count_metrics'
+    __tablename__ = 'developer_contrib_count_metrics'
     __bind_key__ = db_config.bind_name
     author_name: str = db.Column(db.String(255), primary_key=True)
     commit_num: int = db.Column(db.Integer)
