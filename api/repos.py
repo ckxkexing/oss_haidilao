@@ -26,7 +26,7 @@ def remote_test():
 @repos_bp.route('/nloc/')
 @repos_bp.route('/nloc/<int:page>')
 def list_sloc(page=1):
-    per_page = 10
+    per_page = 100
     info = Nloc.query.paginate(page=page, per_page=per_page, error_out=False)
     return Nloc_schema.dump(info)
 

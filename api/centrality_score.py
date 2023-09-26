@@ -13,9 +13,12 @@ from models.metrics import ContributedReposRole, ContributedReposRoleSchema, con
 centrality_score_bp = Blueprint('centrality_score', __name__)
 
 
-@centrality_score_bp.route('/metric/contributed_repos')
-def get_contributed_repos():
-    score = ContributedReposRole.query.all()
+@centrality_score_bp.route('/metric/contributed_repos/')
+@centrality_score_bp.route('/metric/contributed_repos/<int:page>')
+def get_contributed_repos(page=1):
+    per_page = 100
+    # score = ContributedReposRole.query.all()
+    score = ContributedReposRole.query.paginate(page=page, per_page=per_page, error_out=False)
     contributed_repos = ContributedReposRoleSchema.dump(contributed_repos_role_schema, score)
     map_list = []
     for data in contributed_repos:
@@ -23,9 +26,12 @@ def get_contributed_repos():
     return map_list
 
 
-@centrality_score_bp.route('/metric/total_fix_intensity')
-def get_total_fix_intensity():
-    score = TotalFixIntensity.query.all()
+@centrality_score_bp.route('/metric/total_fix_intensity/')
+@centrality_score_bp.route('/metric/total_fix_intensity/<int:page>')
+def get_total_fix_intensity(page=1):
+    per_page = 100
+    # score = TotalFixIntensity.query.all()
+    score = TotalFixIntensity.query.paginate(page=page, per_page=per_page, error_out=False)
     total_fix_intensity = TotalFixIntensitySchema.dump(total_fix_intensity_role_schema, score)
     map_list = []
     for data in total_fix_intensity:
@@ -64,9 +70,12 @@ def get_basic_graph():
     return response
 
 
-@centrality_score_bp.route('/metric/peers_average_fix_intensity')
-def get_peers_average_fix_intensity():
-    score = PeersAverageFixIntensity.query.all()
+@centrality_score_bp.route('/metric/peers_average_fix_intensity/')
+@centrality_score_bp.route('/metric/peers_average_fix_intensity/<int:page>')
+def get_peers_average_fix_intensity(page=1):
+    per_page = 100
+    # score = PeersAverageFixIntensity.query.all()
+    score = PeersAverageFixIntensity.query.paginate(page=page, per_page=per_page, error_out=False)
     peers_average_fix_intensity = PeersAverageFixIntensitySchema.dump(peers_average_fix_intensity_role_schema, score)
     return peers_average_fix_intensity
 
@@ -74,9 +83,12 @@ def get_peers_average_fix_intensity():
 
 
 
-@centrality_score_bp.route('/metric/person_metrics')
-def get_person_metrics():
-    score = DeveloperRolesMetrics.query.all()
+@centrality_score_bp.route('/metric/person_metrics/')
+@centrality_score_bp.route('/metric/person_metrics/<int:page>')
+def get_person_metrics(page=1):
+    per_page = 100
+    # score = DeveloperRolesMetrics.query.all()
+    score = DeveloperRolesMetrics.query.paginate(page=page, per_page=per_page, error_out=False)
     developer_roles_metrics = DeveloperRolesMetricsSchema.dump(developer_roles_metrics_schema, score)
     map_list = []
     for result in developer_roles_metrics:

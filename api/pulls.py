@@ -21,7 +21,7 @@ def list_pulls(page=1):
 @pulls_bp.route('/list/<owner>/<repo>')
 @pulls_bp.route('/list/<owner>/<repo>/<int:page>')
 def list_repo_pulls(owner, repo, page=1):
-    per_page = 10
+    per_page = 100
     info = GithubPullRequests.query.filter(
                 GithubPullRequests.search_key__owner==owner, 
                 GithubPullRequests.search_key__repo==repo

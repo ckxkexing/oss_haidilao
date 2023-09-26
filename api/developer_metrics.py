@@ -8,9 +8,12 @@ from models.metrics_developer import PrivilegeEvents, PrivilegeEventsSchema, Pri
 
 developer_metrics_bp = Blueprint('developer_metrics', __name__)
 
-@developer_metrics_bp.route('/privilede_events')
-def get_privilege_events():
-    score = PrivilegeEvents.query.all()
+@developer_metrics_bp.route('/privilede_events/')
+@developer_metrics_bp.route('/privilede_events/<int:page>')
+def get_privilege_events(page=1):
+    per_page = 100
+    # score = PrivilegeEvents.query.all()
+    score = PrivilegeEvents.query.paginate(page=page, per_page=per_page, error_out=False)
     privilege_events = PrivilegeEventsSchema.dump(Privilege_events_schema, score)
     map_list = []
     for data in privilege_events:
@@ -32,10 +35,12 @@ def get_privilege_events():
                          })
     return map_list
 
-# TODO Fix
-@developer_metrics_bp.route('/count_metrics')
-def get_count_metrics():
-    score = CountMetrics.query.all()
+@developer_metrics_bp.route('/count_metrics/')
+@developer_metrics_bp.route('/count_metrics/<int:page>')
+def get_count_metrics(page=1):
+    per_page = 100
+    # score = CountMetrics.query.all()
+    score = CountMetrics.query.paginate(page=page, per_page=per_page, error_out=False)
     count_metrics = CountMetricsSchema.dump(Count_metrics_schema, score)
     map_list = []
     for data in count_metrics:
@@ -47,9 +52,12 @@ def get_count_metrics():
     return map_list
 
 
-@developer_metrics_bp.route('/developer_network_metrics')
-def get_developer_network_metrics():
-    score = DeveloperNetworkMetrics.query.all()
+@developer_metrics_bp.route('/developer_network_metrics/')
+@developer_metrics_bp.route('/developer_network_metrics/<int:page>')
+def get_developer_network_metrics(page=1):
+    per_page = 100
+    # score = DeveloperNetworkMetrics.query.all()
+    score = DeveloperNetworkMetrics.query.paginate(page=page, per_page=per_page, error_out=False)
     developer_network_metrics = DeveloperNetworkMetricsSchema.dump(Developer_network_metrics_schema, score)
     map_list = []
     for data in developer_network_metrics:
